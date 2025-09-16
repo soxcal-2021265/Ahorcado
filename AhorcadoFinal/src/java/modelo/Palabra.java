@@ -2,29 +2,21 @@ package modelo;
 
 public class Palabra {
     
-    private int idPalabra; 
+    private int id_Palabra; 
     private String palabra;
-    private String pistaUno;
-    private String pistaDos;
-    private String pistaTres;
+    private String pista_Uno;
+    private String pista_Dos;
+    private String pista_Tres;
 
     public Palabra() {
+    }    
+
+    public int getId_Palabra() {
+        return id_Palabra;
     }
 
-    public Palabra(int idPalabra, String palabra, String pistaUno, String pistaDos, String pistaTres) {
-        this.idPalabra = idPalabra;
-        this.palabra = palabra;
-        this.pistaUno = pistaUno;
-        this.pistaDos = pistaDos;
-        this.pistaTres = pistaTres;
-    }
-
-    public int getIdPalabra() {
-        return idPalabra;
-    }
-
-    public void setIdPalabra(int idPalabra) {
-        this.idPalabra = idPalabra;
+    public void setId_Palabra(int id_Palabra) {
+        this.id_Palabra = id_Palabra;
     }
 
     public String getPalabra() {
@@ -35,33 +27,33 @@ public class Palabra {
         this.palabra = palabra;
     }
 
-    public String getPistaUno() {
-        return pistaUno;
+    public String getPista_Uno() {
+        return pista_Uno;
     }
 
-    public void setPistaUno(String pistaUno) {
-        this.pistaUno = pistaUno;
+    public void setPista_Uno(String pista_Uno) {
+        this.pista_Uno = pista_Uno;
     }
 
-    public String getPistaDos() {
-        return pistaDos;
+    public String getPista_Dos() {
+        return pista_Dos;
     }
 
-    public void setPistaDos(String pistaDos) {
-        this.pistaDos = pistaDos;
+    public void setPista_Dos(String pista_Dos) {
+        this.pista_Dos = pista_Dos;
     }
 
-    public String getPistaTres() {
-        return pistaTres;
+    public String getPista_Tres() {
+        return pista_Tres;
     }
 
-    public void setPistaTres(String pistaTres) {
-        this.pistaTres = pistaTres;
+    public void setPista_Tres(String pista_Tres) {
+        this.pista_Tres = pista_Tres;
     }
 
     @Override
     public String toString() {
-        return "Palabra{" + "idPalabra=" + idPalabra + ", palabra=" + palabra + ", pistaUno=" + pistaUno + ", pistaDos=" + pistaDos + ", pistaTres=" + pistaTres + '}';
+        return "Palabra{" + "id_Palabra=" + id_Palabra + ", palabra=" + palabra + ", pista_Uno=" + pista_Uno + ", pista_Dos=" + pista_Dos + ", pista_Tres=" + pista_Tres + '}';
     }
     
     
