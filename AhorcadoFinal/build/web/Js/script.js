@@ -1,27 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const loginForm = document.getElementById('login-form');
-    const loginContainer = document.getElementById('login-container');
     const mainContainer = document.getElementById('main-container');
-
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const usernameInput = document.getElementById('username');
-        const passwordInput = document.getElementById('password');
-
-        const username = usernameInput.value;
-        const password = passwordInput.value;
-
-        if (username === 'admin' && password === '1') {
-            loginContainer.style.display = 'none';
-            mainContainer.style.display = 'block';
-            iniciarJuego();
-        } else {
-            alert('Nombre de usuario o contrasena incorrectos.');
-        }
-    });
-
     const palabraOculta = document.getElementById('palabra-oculta');
     const imagenAhorcado = document.getElementById('imagen-ahorcado');
     const teclado = document.getElementById('teclado-letras');
@@ -55,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             objetoSeleccionado = {
                 palabra: palabraData.palabra,
-                pistas: [palabraData.pistaUno, palabraData.pistaDos, palabraData.pistaTres]
+                pistas: [palabraData.pista_uno, palabraData.pista_dos, palabraData.pista_tres]
             };
             
             palabraMostrada = '_'.repeat(objetoSeleccionado.palabra.length);
@@ -224,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Event Listeners para los botones
     btnIniciar.addEventListener('click', iniciarJuego);
     btnReiniciar.addEventListener('click', iniciarJuego);
 
@@ -238,4 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     btnSalir.addEventListener('click', salirJuego);
+    
+    iniciarJuego();
 });
