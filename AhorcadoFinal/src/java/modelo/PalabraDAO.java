@@ -25,9 +25,9 @@ public class PalabraDAO {
             if (rs.next()) {
                 palabra = new Palabra();
                 palabra.setPalabra(rs.getString("palabra"));
-                palabra.setPista_Uno(rs.getString("pista_Uno"));
-                palabra.setPista_Dos(rs.getString("pista_Dos"));
-                palabra.setPista_Tres(rs.getString("pista_Tres"));
+                palabra.setPista_uno(rs.getString("pista_uno"));
+                palabra.setPista_dos(rs.getString("pista_dos"));
+                palabra.setPista_tres(rs.getString("pista_tres"));
             }
         } catch (SQLException e) {
             System.err.println("Error al obtener palabra: " + e.getMessage());
