@@ -23,10 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let temporizadorIntervalo;
 
     async function iniciarJuego() {
-        // 🔹 Ocultar el botón de inicio
         document.querySelector('.pantalla-inicio').style.display = "none";
 
-        // 🔹 Mostrar el juego
         mainContainer.style.display = "block";
         juegoEnPausa = false;
         
@@ -89,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function manejarJuegoPerdidoPorTiempo() {
-        mensaje.textContent = `Se acabó el tiempo. La palabra era: ${objetoSeleccionado.palabra}`;
+        mensaje.textContent = `Se acabo el tiempo. La palabra era: ${objetoSeleccionado.palabra}`;
         mensaje.className = 'mensaje perdiste';
         desactivarTeclado();
         juegoEnPausa = true;
@@ -224,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnSalir.addEventListener('click', salirJuego);
 
-    // 🔹 Al inicio ocultamos el contenedor del juego
     mainContainer.style.display = "none";
 
 });

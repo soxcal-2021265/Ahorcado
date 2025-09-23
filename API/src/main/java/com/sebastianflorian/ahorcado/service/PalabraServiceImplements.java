@@ -28,22 +28,7 @@ public class PalabraServiceImplements implements PalabraService {
 
     @Override
     public Palabra savePalabra(Palabra palabra) {
-        if (palabra.getPalabra() == null || palabra.getPalabra().trim().isEmpty()) {
-            throw new RuntimeException("La palabra no puede estar vacía");
-        }
-        // Validacion para que solo se ingresen letras en la palabra
-        if (!palabra.getPalabra().matches("^[a-zA-Z]+$")) {
-            throw new RuntimeException("La palabra solo puede contener letras");
-        }
-        if (palabra.getPistaUno() == null || palabra.getPistaUno().trim().isEmpty()) {
-            throw new RuntimeException("La pista 1 no puede estar vacía");
-        }
-        if (palabra.getPistaDos() == null || palabra.getPistaDos().trim().isEmpty()) {
-            throw new RuntimeException("La pista 2 no puede estar vacía");
-        }
-        if (palabra.getPistaTres() == null || palabra.getPistaTres().trim().isEmpty()) {
-            throw new RuntimeException("La pista 3 no puede estar vacía");
-        }
+        validatePalabra(palabra);
         if (palabraRepository.existsByPalabra(palabra.getPalabra())) {
             throw new RuntimeException("La palabra ya existe en el diccionario");
         }
@@ -52,22 +37,7 @@ public class PalabraServiceImplements implements PalabraService {
 
     @Override
     public Palabra updatePalabra(Integer idPalabra, Palabra palabra) {
-        if (palabra.getPalabra() == null || palabra.getPalabra().trim().isEmpty()) {
-            throw new RuntimeException("La palabra no puede estar vacía");
-        }
-        // Validacion para que solo se ingresen letras en la palabra
-        if (!palabra.getPalabra().matches("^[a-zA-Z]+$")) {
-            throw new RuntimeException("La palabra solo puede contener letras");
-        }
-        if (palabra.getPistaUno() == null || palabra.getPistaUno().trim().isEmpty()) {
-            throw new RuntimeException("La pista 1 no puede estar vacía");
-        }
-        if (palabra.getPistaDos() == null || palabra.getPistaDos().trim().isEmpty()) {
-            throw new RuntimeException("La pista 2 no puede estar vacía");
-        }
-        if (palabra.getPistaTres() == null || palabra.getPistaTres().trim().isEmpty()) {
-            throw new RuntimeException("La pista 3 no puede estar vacía");
-        }
+        validatePalabra(palabra);
         Palabra existingPalabra = palabraRepository.findById(idPalabra)
                 .orElseThrow(() -> new RuntimeException("Palabra no encontrada con ID: " + idPalabra));
 
@@ -89,5 +59,23 @@ public class PalabraServiceImplements implements PalabraService {
             throw new RuntimeException("La palabra no fue encontrada");
         }
         palabraRepository.deleteById(idPalabra);
+    }
+
+    private void validatePalabra(Palabra palabra) {
+        if (palabra.getPalabra() == null || palabra.getPalabra().trim().isEmpty()) {
+            throw new RuntimeException("La palabra no puede estar vacía");
+        }
+        if (!palabra.getPalabra().matches("^[a-zA-Z]+$")) {
+            throw new RuntimeException("La palabra solo puede contener letras");
+        }
+        if (palabra.getPistaUno() == null || palabra.getPistaUno().trim().isEmpty()) {
+            throw new RuntimeException("La pista 1 no puede estar vacía");
+        }
+        if (palabra.getPistaDos() == null || palabra.getPistaDos().trim().isEmpty()) {
+            throw new RuntimeException("La pista 2 no puede estar vacía");
+        }
+        if (palabra.getPistaTres() == null || palabra.getPistaTres().trim().isEmpty()) {
+            throw new RuntimeException("La pista 3 no puede estar vacía");
+        }
     }
 }
