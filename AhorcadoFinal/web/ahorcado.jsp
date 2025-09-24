@@ -8,20 +8,16 @@
 </head>
 <body>
 
-    <!-- Botón de inicio visible al cargar la página -->
     <div class="pantalla-inicio">
         <button id="btn-iniciar">Iniciar Juego</button>
     </div>
 
-    <!-- Contenedor principal del juego (oculto al inicio) -->
     <div id="main-container" class="main-container">
-        <div class="game-layout"> 
-            <!-- Imagen del ahorcado -->
+        <div class="game-layout">
             <div class="imagen-container">
                 <img id="imagen-ahorcado" src="Image/1.png" alt="Imagen del Ahorcado">
             </div>
 
-            <!-- Contenedor del juego -->
             <div class="juego-container">
                 <h1>El Ahorcado</h1>
                 <div id="palabra-oculta" class="palabra-oculta"></div>
@@ -36,9 +32,13 @@
                 </div>
             </div>
 
-            <!-- Pistas -->
-            <div class="pistas-container">
-                <div id="pistas" class="pistas"></div>
+            <div class="side-panel">
+                <div class="pistas-container">
+                    <div id="pistas" class="pistas"></div>
+                </div>
+                <div class="imagen-palabra-adivinada-container" style="display: none;">
+                    <img id="imagen-palabra-adivinada" class="imagen-palabra-adivinada" src="" alt="Imagen de la palabra">
+                </div>
             </div>
         </div>
     </div>

@@ -37,12 +37,10 @@ public class UsuarioServiceImplements implements UsuarioService {
 
     @Override
     public Usuario saveUsuario(Usuario usuario) {
-        // Validación del dominio del correo
         if (!esDominioValido(usuario.getCorreo())) {
             throw new RuntimeException("El correo debe tener un dominio válido (@gmail.com, @outlook.com, @yahoo.com, @kinal.edu.gt, @icloud.com)");
         }
 
-        // Validación de existencia del correo
         if (usuarioRepository.existsByCorreo(usuario.getCorreo())) {
             throw new RuntimeException("El correo ya existe en la base de datos");
         }
@@ -55,7 +53,6 @@ public class UsuarioServiceImplements implements UsuarioService {
         Usuario existingUsuario = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + idUsuario));
 
-        // Validación del dominio del correo para la actualización
         if (!esDominioValido(usuario.getCorreo())) {
             throw new RuntimeException("El correo debe tener un dominio válido (@gmail.com, @outlook.com, @yahoo.com, @kinal.edu.gt, @icloud.com)");
         }
@@ -65,7 +62,6 @@ public class UsuarioServiceImplements implements UsuarioService {
             throw new RuntimeException("El correo ya está en uso por otra cuenta");
         }
 
-        // Actualización de los datos del usuario
         existingUsuario.setCorreo(usuario.getCorreo());
         existingUsuario.setContrasena(usuario.getContrasena());
 

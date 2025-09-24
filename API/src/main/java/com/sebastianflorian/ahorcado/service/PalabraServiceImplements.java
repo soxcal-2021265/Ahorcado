@@ -77,5 +77,8 @@ public class PalabraServiceImplements implements PalabraService {
         if (palabra.getPistaTres() == null || palabra.getPistaTres().trim().isEmpty()) {
             throw new RuntimeException("La pista 3 no puede estar vacía");
         }
+        if (!palabra.getPalabra().equals(palabra.getPalabra().toUpperCase())) {
+            throw new RuntimeException("La palabra debe estar en mayúsculas");
+        }
     }
 }

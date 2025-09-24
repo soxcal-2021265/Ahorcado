@@ -16,9 +16,8 @@ public class PalabraDAO {
         ResultSet rs = null;
 
         try {
-            // Se crea una nueva instancia de Conexion
             Conexion cn = new Conexion();
-            con = cn.Conexion(); // Se usa el método no estático
+            con = cn.Conexion();
             cs = con.prepareCall(sql);
             rs = cs.executeQuery();
 
@@ -33,7 +32,6 @@ public class PalabraDAO {
             System.err.println("Error al obtener palabra: " + e.getMessage());
             e.printStackTrace();
         } finally {
-            // Es crucial cerrar los recursos manualmente
             try {
                 if (rs != null) rs.close();
                 if (cs != null) cs.close();

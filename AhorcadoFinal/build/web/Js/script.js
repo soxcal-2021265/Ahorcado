@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const pistas = document.getElementById('pistas');
     const temporizadorElemento = document.getElementById('temporizador');
 
+    const imagenPalabraAdivinadaContainer = document.querySelector('.imagen-palabra-adivinada-container');
+    const imagenPalabraAdivinada = document.getElementById('imagen-palabra-adivinada');
+
     const btnIniciar = document.getElementById('btn-iniciar');
     const btnPausar = document.getElementById('btn-pausar');
     const btnReiniciar = document.getElementById('btn-reiniciar');
@@ -28,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContainer.style.display = "block";
         juegoEnPausa = false;
         
+        imagenPalabraAdivinadaContainer.style.display = 'none';
+
         try {
             const respuesta = await fetch('./Controlador?accion=obtenerPalabra');
             if (!respuesta.ok) {
@@ -57,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             crearTeclado();
             manejarTeclado(true);
             iniciarTemporizador();
-        
+            
         } catch (error) {
             console.error("Error en la petición:", error);
             mensaje.textContent = "Error al conectar con el servidor. No se puede iniciar el juego.";
@@ -138,15 +143,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function verificarEstadoJuego() {
         if (palabraMostrada === objetoSeleccionado.palabra) {
-            mensaje.textContent = '¡Felicidades, ganaste!';
+            mensaje.textContent = 'Felicidades, ganaste!';
             mensaje.className = 'mensaje ganaste';
             desactivarTeclado();
             clearInterval(temporizadorIntervalo);
+
+            const nombreImagen = objetoSeleccionado.palabra.toLowerCase();
+            imagenPalabraAdivinada.src = `Image/${nombreImagen}.png`;
+            imagenPalabraAdivinadaContainer.style.display = 'block';
+
         } else if (errores >= maxErrores) {
             mensaje.textContent = `Perdiste. La palabra era: ${objetoSeleccionado.palabra}`;
             mensaje.className = 'mensaje perdiste';
             desactivarTeclado();
             clearInterval(temporizadorIntervalo);
+            imagenPalabraAdivinadaContainer.style.display = 'none';
         }
     }
 
@@ -198,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         desactivarTeclado();
         pistas.innerHTML = '';
         clearInterval(temporizadorIntervalo);
+        imagenPalabraAdivinadaContainer.style.display = 'none';
     }
 
     function desactivarTeclado() {
@@ -206,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event Listeners para los botones
     btnIniciar.addEventListener('click', iniciarJuego);
     btnReiniciar.addEventListener('click', iniciarJuego);
 
@@ -223,5 +234,4 @@ document.addEventListener('DOMContentLoaded', () => {
     btnSalir.addEventListener('click', salirJuego);
 
     mainContainer.style.display = "none";
-
 });
